@@ -6,16 +6,16 @@ const {
   updateCategory,
   deleteCategory,
 } = require("../controllers/categoryController");
-const { isLogin } = require("../middlewares/authMiddleware");
+const { isLogin, isAdmin } = require("../middlewares/authMiddleware");
 //create category
 deleteCategory, categoryRoute.post("/", isLogin, createCategory);
 //get all categories
-categoryRoute.get("/", getAllCategory);
+categoryRoute.get("/", isLogin, isAdmin, getAllCategory);
 //get category by id
-categoryRoute.get("/:id", getCategoryById);
+categoryRoute.get("/:id", isLogin, isAdmin, getCategoryById);
 //update category
-categoryRoute.put("/:id", updateCategory);
+categoryRoute.put("/:id", isLogin, isAdmin, updateCategory);
 //detete category
-categoryRoute.delete("/:id", deleteCategory);
+categoryRoute.delete("/:id", isLogin, isAdmin, deleteCategory);
 
 module.exports = categoryRoute;

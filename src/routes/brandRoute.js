@@ -6,16 +6,16 @@ const {
   updateBrand,
   deleteBrand,
 } = require("../controllers/brandController");
-const { isLogin } = require("../middlewares/authMiddleware");
+const { isLogin, isAdmin } = require("../middlewares/authMiddleware");
 //create brand
-brandRoute.post("/", isLogin, createBrand);
+brandRoute.post("/", isLogin, isAdmin, createBrand);
 //get all categories
-brandRoute.get("/", getAllBrand);
+brandRoute.get("/", isLogin, isAdmin, getAllBrand);
 //get brand by id
-brandRoute.get("/:id", getBrandById);
+brandRoute.get("/:id", isLogin, isAdmin, getBrandById);
 //update brand
-brandRoute.put("/:id", updateBrand);
+brandRoute.put("/:id", isLogin, isAdmin, updateBrand);
 //detete brand
-brandRoute.delete("/:id", deleteBrand);
+brandRoute.delete("/:id", isLogin, isAdmin, deleteBrand);
 
 module.exports = brandRoute;

@@ -7,7 +7,7 @@ const {
   getInvoice,
   getOrderStats,
 } = require("../controllers/orderController");
-const { isLogin } = require("../middlewares/authMiddleware");
+const { isLogin, isAdmin } = require("../middlewares/authMiddleware");
 
 //create order
 orderRoute.post("/", isLogin, createOrder);
@@ -16,7 +16,7 @@ orderRoute.get("/", isLogin, getOrders);
 //get order
 orderRoute.get("/:id", isLogin, getOrderById);
 //update status order
-orderRoute.patch("/:id", isLogin, updateStatusOrder);
+orderRoute.patch("/:id", isLogin, isAdmin, updateStatusOrder);
 //get invoice
 orderRoute.get("/invoice/:orderid", isLogin, getInvoice);
 //get sum

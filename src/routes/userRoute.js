@@ -21,13 +21,13 @@ userRoute.post("/register", registerUser);
 //login
 userRoute.post("/login", loginUser);
 //logout
-userRoute.post("/logout", logoutUser);
+userRoute.post("/logout", isLogin, logoutUser);
 //get user
 userRoute.get("/get-user", isLogin, getUser);
 //get all User
-userRoute.get("/", isLogin, getAllUser);
+userRoute.get("/", isLogin, isAdmin, getAllUser);
 //change role
-userRoute.patch("/change-role", isLogin, changRole);
+userRoute.patch("/change-role", isLogin, isAdmin, changRole);
 //send email
 userRoute.post("/sendEmail", isLogin, sendAutomatedEmail);
 //verification token

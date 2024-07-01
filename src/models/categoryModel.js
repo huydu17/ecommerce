@@ -11,10 +11,6 @@ const categorySchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    image: {
-      type: String,
-      default: "",
-    },
     products: [
       {
         type: mongoose.Schema.Types.ObjectId,
